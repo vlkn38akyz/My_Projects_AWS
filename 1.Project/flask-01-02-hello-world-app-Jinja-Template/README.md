@@ -80,8 +80,8 @@ def third():
  @app.route("/forth/<string:id>")
 def forth(id):
     return f'Id of this page is {id}' 
-    
-           
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -120,6 +120,33 @@ if __name__ == "__main__":
 - Create python file named `jinja.py`
 
 - Import Flask and render_template modules.
+
+from flask import Flask, render_template 
+
+app = Flask(__name__)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+from flask import Flask, render_template 
+
+app = Flask(__name__)
+
+@app.route("/")
+def head():
+    return render_template('index.html', number1 = 20, number2 = 40)
+
+@app.route("/mult")
+def number():
+    var1, var2 = 30, 70
+    return render_template('body.html', num1=var1, num2=var2, mul=var1*var2)    
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+
 
 - Create an object named `app` from imported Flask module.
 
