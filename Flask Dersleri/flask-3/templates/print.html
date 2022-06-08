@@ -6,10 +6,15 @@
     <title>Anasayfa</title>
 </head>
 <body>
-    <h1>ILK WEB SAYFASI</h1>
-    sayi1 : {{number1}} <br>
-    sayi2 : {{number2}} <br>
-    isim : {{isim}}
+
+    <ol>
+    {% for i in range(0,len) %}
+        <li>{{Tags[i]}}</li>
+        <li>{{i**2}}</li>
+    
+    {% endfor %}
+    </ol>
+    
    
 
 
