@@ -8,7 +8,7 @@ app = Flask(__name__)
 # and assign route of no path ('/')
 @app.route("/")
 def home():
-    return 'Hello Clarusway, <h1> Welcome Home</h1>' 
+    return 'Hello Clarusway merhaba , <h1> Welcome Home</h1>' 
 
 
 
@@ -16,7 +16,7 @@ def home():
 # and assign to the static route of ('about')
 @app.route('/about')
 def about():
-    return '<h3>This is my about page </h3>'
+    return '<h2>This is my about page </h2>'
 
 
 # Create a function named error which returns a formatted string '<h1>Either you encountered an error or you are not authorized.</h1>' 
@@ -37,21 +37,21 @@ def admin():
 
 # Create a function named greet which return formatted inline html string 
 # and assign to the dynamic route of ('/<name>')
-#@app.route('/armando')
-#def greet(name):
-#     greet_format=f"""
-# <!DOCTYPE html>
-# <html>
-# <head>
-#     <title>Greeting Page</title>
-# </head>
-# <body>
-#     <h1>Hello, { name }!</h1>
-#     <h1>Welcome to my Greeting Page</h1>
-# </body>
-# </html>
-##     """
-#     return greet_format
+@app.route('/<name>')
+def greet(name):
+     greet_format=f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting Page</title>
+</head>
+<body>
+    <h1>Hello, { name }!</h1>
+    <h1>Welcome to my Greeting Page</h1>
+</body>
+</html>
+     """
+     return greet_format
 
 
 
@@ -68,9 +68,9 @@ def admin():
 # Rewrite a function named greet which uses template file named `greet.html` under `templates` folder 
 # and assign to the dynamic route of ('/<name>'). 
 # Please find a template html file named `greet.html` which takes `name` as parameter under `templates` folder 
-@app.route('/<name>')
-def greet(name):
-    return render_template('greet.html', name=name)
+#@app.route('/<name>')
+#def greet(name):
+#    return render_template('greet.html', name=name)
 
 
 
