@@ -21,6 +21,13 @@ def forif():
     sayilar = [-1,-2,3,5,6,8]
     return render_template("forif.html",len = len(sayilar), sayilar = sayilar)
 
+
+@app.route("/forx")
+def forx():
+    sayi = 100
+    sum = 0  
+    return render_template("forx.html", sayi = sayi, sum = sum )
+
   
 
 if __name__ == "__main__":
