@@ -13,7 +13,7 @@ def index():
 @app.route("/print")
 def print():
    
-    return render_template("print.html",len = len(Tags), Tags = Tags)
+    return render_template("print.html",len = len(Tags), Tags = ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sontag"])
 
 
 @app.route("/forif")
@@ -24,11 +24,16 @@ def forif():
 
 @app.route("/forx")
 def forx():
-    sayi = 100
+    sayi = 101
     sum = 0  
+    for i in range(0,sayi):
+        sum += i
+
     return render_template("forx.html", sayi = sayi, sum = sum )
 
   
 
 if __name__ == "__main__":
     app.run(debug = True)  
+
+    
