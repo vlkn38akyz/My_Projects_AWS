@@ -34,7 +34,7 @@ Resources:
         - !Ref VolkanSecurityGroup
       Tags:
         - Key : Name 
-          Value: !Sub Web Server of ${AWS::StackName} Stack
+          Value: !Sub Akyüz Server of ${AWS::StackName} Stack
       UserData: 
         Fn::Base64:
           !Sub |
@@ -53,6 +53,6 @@ Resources:
 Outputs:
   WebsiteURL:
     Value: !Sub 
-      - http://${PublicAdress}
-      - PublicAddress : !GetAtt VolkanServerHost.PublicDnsName
-    Description: Kittens Carousel Application URL  
+      - http://${PublicAddress}
+      - PublicAddress: !GetAtt VolkanServerHost.PublicDnsName
+    Description: Kittens Carousel Application URL
