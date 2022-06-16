@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: |
+   CloudFormation Template for Roman Numerals Converter Application.
+   This template creates Python Flask Web Application on Amazon Linux 2
+   (ami-0cff7528ff583bf9a) EC2 Instance with custom security group allowing
+   http connections on port 80 and SSH connection on port 22.
+   Roman Numerals Converter Application is downloaded from Github repository,
+   then installed on Flask.
+  
+Parameters:
+  VolkanKeyName:
+    Description: Enter the name of your Key Pair for SSH connections.
+    Type: AWS::EC2::KeyPair::KeyName 
+Resources:
+  VolkanSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Enable HTTP for flask web server and SSH port to secure reach to my EC2" # Required
+      SecurityGroupIngress:
+        - IpProtocol: tcp 
+          FromPort: 80
+          ToPort : 80
+          CidrIP: 0.0.0.0/0
+        - IpProtocol: tcp 
+          FromPort: 22
+          ToPort : 22
+          CidrIP: 0.0.0.0/0
+  VolkanServerHost:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0cff7528ff583bf9a
+      InstanceType: t2.micro
+      KeyName: !Ref VolkanKeyName
+      SecurityGroupIds:
+        - !Ref VolkanSecurityGroup
+      Tags:
+        - Key: Name 
+          Value: !Sub Volkan Server of ${AWS::StackName} Stack
+      UserData: !Base64 |
+          #! /bin/bash
+          yum update -y 
+          yum install python3 -y
+          pip3 install flask
+          cd /home/ec2-user
+          wget -p templates https://raw.githubusercontent.com/vlkn38akyz/My_Projects_AWS/main/4.Project/Project-001-Roman-Numerals-Converter/templates/index.html
+          wget -p templates https://raw.githubusercontent.com/vlkn38akyz/My_Projects_AWS/main/4.Project/Project-001-Roman-Numerals-Converter/templates/result.html
+          wget https://raw.githubusercontent.com/vlkn38akyz/My_Projects_AWS/main/4.Project/Project-001-Roman-Numerals-Converter/app.py
+          python3 app.py
+Outputs:
+  WebsiteURL:
+    Value: !Sub 
+      - http://${PublicAddress}
+      - PublicAddress: !GetAtt VolkanServerHost.PublicDnsName
+    Description: Roman Numerals Converter Application URL  
