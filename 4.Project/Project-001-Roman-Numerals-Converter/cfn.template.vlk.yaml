@@ -6,7 +6,6 @@ Description: |
    http connections on port 80 and SSH connection on port 22.
    Roman Numerals Converter Application is downloaded from Github repository,
    then installed on Flask.
-  
 Parameters:
   VolkanKeyName:
     Description: Enter the name of your Key Pair for SSH connections.
