@@ -1,0 +1,1 @@
+IP=$(sed -n '20p' info.json |cut -b 34-46)|echo $IP| sed "s/ec2-private_ip/$IP/" terraform.tf | tee terraform1.tf

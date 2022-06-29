@@ -1,0 +1,21 @@
+#!/bin/bash
+
+day=$(date + %A)
+hostname=$(hostname -s)
+etc_archive_file=$hostname-$day.tgz
+boot_archive_file=$hostname-$day.tgz
+data_archive_file=$hostname-$day.tgz
+
+
+i=1
+
+while [[ i=1 ]]
+do 
+tar -cvzf etc_archive_file /etc
+tar -cvzf boot_archive_file /boot
+#tar -cvzf usr.tar /usr
+tar -cvzf data_archive_file /home/ec2-user/data
+$day
+sleep 60
+
+done
